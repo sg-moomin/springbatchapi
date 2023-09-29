@@ -23,9 +23,20 @@ repositories {
 	maven { url 'https://repo.spring.io/snapshot' }
 }
 
+ext {
+	springSheldlockVersion ='4.44.0'	
+	shedlockJdbcVersion ='4.44.0'
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-batch'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.7.12'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'org.hibernate:hibernate-entitymanager:5.6.9.Final'
+	implementation 'org.springframework.boot:spring-boot-configuration-processor'
+	
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	implementation 'com.h2database:h2'
@@ -33,6 +44,10 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.batch:spring-batch-test'
 	runtimeOnly 'org.springframework.boot:spring-boot-devtools'
+
+	implementation("net.javacrumbs.shedlock:shedlock-spring:${springSheldlockVersion}")
+	implementation("net.javacrumbs.shedlock:shedlock-provider-jdbc-template:${shedlockJdbcVersion}")
+
 
 }
 
