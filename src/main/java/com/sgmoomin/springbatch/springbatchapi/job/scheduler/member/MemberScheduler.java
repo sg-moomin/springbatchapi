@@ -1,4 +1,4 @@
-package com.sgmoomin.springbatch.springbatchapi.job.scheduler;
+package com.sgmoomin.springbatch.springbatchapi.job.scheduler.member;
 
 import java.util.Calendar;
 import java.util.Date;

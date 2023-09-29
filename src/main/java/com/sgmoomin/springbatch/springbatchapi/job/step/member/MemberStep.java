@@ -1,4 +1,4 @@
-package com.sgmoomin.springbatch.springbatchapi.job.step;
+package com.sgmoomin.springbatch.springbatchapi.job.step.member;
 
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
@@ -6,8 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.sgmoomin.springbatch.springbatchapi.job.tasklet.MemberSelectTasklet;
-import com.sgmoomin.springbatch.springbatchapi.job.tasklet.MemberTasklet;
+import com.sgmoomin.springbatch.springbatchapi.common.code.BatchStepNameType;
+import com.sgmoomin.springbatch.springbatchapi.job.tasklet.member.MemberSelectTasklet;
+import com.sgmoomin.springbatch.springbatchapi.job.tasklet.member.MemberTasklet;
 
 
 @Configuration
@@ -22,16 +23,16 @@ public class MemberStep {
     @Autowired
     private MemberSelectTasklet memberSelectTasklet;
 
-    @Bean(name = "getMemberStep")
+    @Bean(name = BatchStepNameType.STEP_ANNOTATAION.GET_MEMBER_STEP)
     public Step getMemberStep(){
-        return stepBuilderFactory.get("getMemberStep")
+        return stepBuilderFactory.get(BatchStepNameType.GET_MEMBER_STEP_NAME.getValue())
             .tasklet(memberTasklet)
             .build();
     }
 
-    @Bean(name = "selectMemberStep")
+    @Bean(name = BatchStepNameType.STEP_ANNOTATAION.SELECT_MEMBER_STEP)
     public Step selectMemberStep(){
-        return stepBuilderFactory.get("selectMemberStep")
+        return stepBuilderFactory.get(BatchStepNameType.SELECT_MEMBER_STEP_NAME.getValue())
             .tasklet(memberSelectTasklet)
             .build();
     }
