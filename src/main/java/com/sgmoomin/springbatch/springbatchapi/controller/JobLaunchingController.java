@@ -7,7 +7,9 @@ import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
+import org.springframework.batch.core.configuration.JobRegistry;
 import org.springframework.batch.core.launch.JobLauncher;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +25,10 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequiredArgsConstructor
 public class JobLaunchingController {
+
+    @Autowired
+    private JobRegistry jobRegistry;
+
 
     private final JobLauncher jobLauncher;
 
@@ -43,7 +49,7 @@ public class JobLaunchingController {
             .toJobParameters();
 
         log.info("PostMapping memberJob");
-        return jobLauncher.run(job, jobParameter).getExitStatus();
+        return jobLauncher.run(jobRegistry.getJob("getMemberJob"), jobParameter).getExitStatus();
     }
     
     @GetMapping("/memberJob")
@@ -61,8 +67,15 @@ public class JobLaunchingController {
             .toJobParameters();
 
         log.info("Getmapping memberJob");
-        return jobLauncher.run(job, jobParameter).getExitStatus();
+        return jobLauncher.run(jobRegistry.getJob("getMemberJob"), jobParameter).getExitStatus();
     }
+
+    // @GetMapping
+    // public ExitStatus stopMemberJob() throws Exception{
+
+    //     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+    // }
     // @PostMapping("/nextRun")
     // public ExitStatus runJob(@RequestBody JobLauncherRequest params) throws Exception {
     //             Job job = context.getBean(request.getName(), Job.class);
