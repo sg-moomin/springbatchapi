@@ -52,8 +52,22 @@ management:
 # DB
 spring:
     config.activate.on-profile: dev-db
+    # datasource:
+    #     url: jdbc:h2:mem:testdb 
+    #     driverClassName: org.h2.Driver
+    #     username: sgmoomin
+    #     password: 1234
     datasource:
-        url: jdbc:h2:mem:testdb 
-        driverClassName: org.h2.Driver
-        username: sgmoomin
-        password: 1234
+        hikari:
+            batchauto:
+                driver-class-name: com.mysql.cj.jdbc.Driver
+                jdbc-url: jdbc:mysql://localhost:3306/BATCH_AUTO_DB?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+                username: root
+                password: 1234
+            default:
+                driver-class-name: com.mysql.cj.jdbc.Driver
+                # driverClassName: com.mysql.cj.jdbc.Driver
+                jdbc-url: jdbc:mysql://localhost:3306/SGMOOMIN_DB?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+                username: root
+                password: 1234
+
