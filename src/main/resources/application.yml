@@ -1,12 +1,73 @@
 spring:
-    datasource:
-        url: jdbc:h2:mem:testdb 
-        driverClassName: org.h2.Driver
-        username: sgmoomin
-        password: 1234
+    application.name: Sgmoomin Spring Batch Api 
+    profiles:
+        group:
+            local: "local-envs, dev-db"
+            dev: "dev-envs, dev-db"
+        active: local
+        mvc.throw-exception-if-no-hanlder-found: true
+        web.resource.add-mapping: false
+    main:
+        allow-bean-definition-overriding: true
+    jpa:
+        hibernate:
+            ddl-auto: none
+            name:
+                physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+                implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+        properties:
+            hibernate:
+                show_sql: true
+                format_sql: true
+                use_sql_comments: true
+        # database-platform: org.hibernate.dialect
+        generate-ddl: false
     batch:
+        jdbc:
+            # 기등록 테이블의 경우 naver, 재등록을 위할 경우 always
+            initialize-schema: always    
         job:
             names: ${job.name:NONE}
             enabled: false
-        jdbc:
-            initialize-schema: always
+    sql.init.mode: always
+
+# Thread Pool Max
+threadPool:
+    threadCount: 5
+
+---
+# local
+spring.config.activate.on-profile: local-envs
+
+
+---
+# dev
+spring.config.activate.on-profile: dev-envs
+
+management:
+    server.port: 18080
+    
+
+---
+# DB
+spring:
+    config.activate.on-profile: dev-db
+    # datasource:
+    #     url: jdbc:h2:mem:testdb 
+    #     driverClassName: org.h2.Driver
+    #     username: sgmoomin
+    #     password: 1234
+    datasource:
+        hikari:
+            batchauto:
+                driver-class-name: com.mysql.cj.jdbc.Driver
+                jdbc-url: jdbc:mysql://localhost:3306/BATCH_AUTO_DB?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+                username: root
+                password: 1234
+            default:
+                driver-class-name: com.mysql.cj.jdbc.Driver
+                # driverClassName: com.mysql.cj.jdbc.Driver
+                jdbc-url: jdbc:mysql://localhost:3306/SGMOOMIN_DB?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+                username: root
+                password: 1234
+

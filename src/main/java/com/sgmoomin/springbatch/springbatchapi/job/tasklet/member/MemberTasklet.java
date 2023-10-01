@@ -1,4 +1,4 @@
-package com.sgmoomin.springbatch.springbatchapi.job.tasklet;
+package com.sgmoomin.springbatch.springbatchapi.job.tasklet.member;
 
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.scope.context.ChunkContext;
