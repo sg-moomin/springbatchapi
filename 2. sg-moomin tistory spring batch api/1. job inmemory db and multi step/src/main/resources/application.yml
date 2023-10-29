@@ -1,0 +1,12 @@
+spring:
+    datasource:
+        url: jdbc:h2:mem:testdb 
+        driverClassName: org.h2.Driver
+        username: sgmoomin
+        password: 1234
+    batch:
+        job:
+            names: ${job.name:NONE}
+            enabled: false
+        jdbc:
+            initialize-schema: always
