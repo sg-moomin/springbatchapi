@@ -61,13 +61,13 @@ spring:
         hikari:
             batchauto:
                 driver-class-name: com.mysql.cj.jdbc.Driver
-                jdbc-url: jdbc:mysql://localhost:3306/BATCH_AUTO_DB?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+                jdbc-url: jdbc:mysql://localhost:3306/BATCH_AUTO_DB?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
                 username: root
                 password: 1234
             default:
                 driver-class-name: com.mysql.cj.jdbc.Driver
                 # driverClassName: com.mysql.cj.jdbc.Driver
-                jdbc-url: jdbc:mysql://localhost:3306/SGMOOMIN_DB?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+                jdbc-url: jdbc:mysql://localhost:3306/SGMOOMIN_DB?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
                 username: root
                 password: 1234
 
