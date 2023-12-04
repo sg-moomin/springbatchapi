@@ -42,7 +42,7 @@ public class MemberJobConfiguration {
     public Job getMemberJob(){
         return jobBuilderFactory.get(BatchJobNameType.GET_MEMBER_JOB_NAME.getValue())
             .validator(batchJobParameterVaildationUtils)
-            .listener(batchJobListenerUtils)
+            .listener(batchJobListenerUtils.jobExecutionListener())
             .start(memberStep.getMemberStep())
             .build();
     }

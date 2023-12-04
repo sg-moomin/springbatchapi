@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 import com.sgmoomin.springbatch.springbatchapi.common.code.BatchJobParameterType;
 
-import antlr.StringUtils;
 
 @Component
 public class BatchRunIdIncrementerUtils implements JobParametersIncrementer{
